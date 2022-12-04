@@ -59,7 +59,7 @@ figure(5)
 subplot(211)
 plot(Ynt1);
 title('SNR为6的高斯白噪声调制信号时域谱');
-axis([0 50 0 2])
+axis([0 50 -2 2])
 subplot(212)
 plot(fftshift(YNT1));
 title('SNR为6的高斯白噪声调制信号频域谱');

@@ -43,7 +43,7 @@ axis([0 50 0 2]);
 
 %-----------------数字调制部分-----------------%
 
-%                   2ASK调制                   %
+%------------------2ASK调制--------------------%
 code1=dmod(y1,Fc,Fd,Fs,'ask',2);         %汉明码 2ASK调制
 code3=dmod(y2,Fc,Fd,Fs,'ask',2);         %循环码 2ASK调制
 for i=1:20                               %手动调节 2ASK部分 调节信号为 汉明码2ASK信号
@@ -67,7 +67,7 @@ title('汉明码 2ASK调制');
 subplot(2,1,2);
 plot(code33);
 title('循环码 2ASK调制');
-%                  2FSK调制                    %
+%------------------2FSK调制--------------------%
 code2=dmod(y2,Fc,Fd,Fs,'fsk',2);         %循环码 2FSK调制
 code4=dmod(y1,Fc,Fd,Fs,'fsk',2);         %汉明码 2FSK调制
 figure(4);
@@ -153,7 +153,7 @@ axis([0 50 0 1]);
 
 %----------------误码率分析部分-----------------%
 SNR=-10:10;
-for i=1:length(SNR); 
+for i=1:length(SNR) 
     Ynt1=awgn(code1,SNR(i));            %加入高斯小噪声，信噪比从-10dB到10dB
     Ynt2=awgn(code2,SNR(i));
     Ynt3=awgn(code3,SNR(i));

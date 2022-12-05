@@ -10,7 +10,7 @@ noisy=randerr(N,n,[0 1;0.7 0.3]);           %噪声
 noisycode1 = mod(code1 + noisy,2);      %加入噪声
 newmsg1 = decode(noisycode1,n,k,'cyclic'); % 译码.
  [number,ratio1] = biterr(newmsg1,msg); %误比特率
-disp(['The bit error rate2 is ',num2str(ratio1)])
+disp(['The bit error rate1 is ',num2str(ratio1)])
 
 %encode         
 msg1 = randi([0,1],N,k,'like',msg);         %消息比特共N*k行

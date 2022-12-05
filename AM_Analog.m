@@ -36,7 +36,7 @@ plot(fftshift(Y1));                           %画出已调信号频谱
 title('已调信号频域谱');
 
 %------------------信道部分--------------------%
-y2=awgn(y1,20,'measured');                    %调制信号通过信噪比为20db的信道
+y2=awgn(y1,15,'measured');                    %调制信号通过信噪比为15db的信道
 Y2=abs(fft(y2,256));
 
 y4=awgn(y1,25,'measured');                    %调制信号通过信噪比为25db的信道
@@ -45,34 +45,34 @@ Y4=abs(fft(y4,256));
 figure(4);
 subplot(2,1,1);
 plot(t,y2);                                   %已调信号通过信道之后的时域谱
-title('20db噪声已调信号时域谱');
+title('15db噪声已调信号时域谱');
 subplot(2,1,2);
 plot(fftshift(Y2));                       %已调信号通过信道之后的频域谱
-title('20db噪声已调信号频域谱');
+title('15db噪声已调信号频域谱');
 
 figure(6);
 subplot(2,1,1);
-plot(t,y4);                                   %已调信号通过信道之后的时域谱
+plot(t,y4);                               %已调信号通过信道之后的时域谱
 title('25db噪声已调信号时域谱');
 subplot(2,1,2);
 plot(fftshift(Y4));                       %已调信号通过信道之后的频域谱
 title('25db噪声已调信号频域谱');
 
 %-----------------解调部分---------------------%
-y3=amdemod(y2,fc,fs);                           %25db解调
+y3=amdemod(y2,fc,fs);                     %15db解调
 Y3=abs(fft(y3,256));                      %解调信号FFT
 [br,pe1]=symerr(y1,y3);
 xxx=pe1;
-y5=amdemod(y4,fc,fs);                           %20db解调
+y5=amdemod(y4,fc,fs);                     %25db解调
 Y5=abs(fft(y4,256));                      %解调信号FFT
 
 figure(5);
 subplot(2,1,1);
 plot(t,y3);                               %解调信号时域谱
-title('20db解调信号时域谱'); 
+title('15db解调信号时域谱'); 
 subplot(2,1,2);
-plot(fftshift(Y3));                         %解调信号频谱.
-title('20db解调信号频域谱');
+plot(fftshift(Y3));                       %解调信号频谱.
+title('15db解调信号频域谱');
 
 figure(7);
 subplot(2,1,1);
@@ -80,5 +80,5 @@ plot(t,y5);                               %解调信号时域谱
 title('25db解调信号时域谱'); 
 axis([0 10 -2 2]);
 subplot(2,1,2);
-plot(fftshift(Y5));                         %解调信号频谱.
+plot(fftshift(Y5));                       %解调信号频谱.
 title('25db解调信号频域谱');

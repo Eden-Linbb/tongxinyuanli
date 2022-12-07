@@ -12,7 +12,7 @@ figure(1);
 subplot(2,1,1);
 plot(x1);
 title('消息');
-axis([0 50 0 1]);
+axis([0 50 -1 2]);
 subplot(2,1,2);
 plot(t,carry);
 title('载波信息');xlabel('时间/s');ylabel('幅度');

@@ -58,7 +58,7 @@ subplot(212)
 plot(fftshift(YNT1));
 title('SNR为6的高斯白噪声调制信号频域谱');
 
-z1=ddemod(Ynt1,Fc,Fd,Fs,'ask',2);
+z1=ddemod(Ynt1,Fc,Fd,Fs,'psk',2);
 Z1=abs(fft(z1,256));
 figure(6)
 subplot(211)
@@ -80,7 +80,7 @@ subplot(212)
 plot(fftshift(YNT2));
 title('SNR为-2的高斯白噪声调制信号频域谱');
 
-z2=ddemod(Ynt2,Fc,Fd,Fs,'ask',2);
+z2=ddemod(Ynt2,Fc,Fd,Fs,'psk',2);
 Z2=abs(fft(z2,256));
 figure(8)
 subplot(211)

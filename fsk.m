@@ -30,7 +30,7 @@ plot(fftshift(abs(FFT2)))
 title("载波信号频域谱")
 
 %对信号进行数字调制并绘制时域谱和频域谱
-y=dmod(x,Fc,Fd,Fs,'fsk',2);%调用数字带通调制函数dmod进行2ASK调制
+y=dmod(x,Fc,Fd,Fs,'fsk',4);%调用数字带通调制函数dmod进行2FSK调制
 for i=1:20
     yy(30*(i-1)+1:30*i)=y(30*(i-1)+1:30*i); 
 end
@@ -45,7 +45,7 @@ plot(fftshift(abs(FFT3)));
 title('调制信号频域谱');
 
 %对已调信号进行解调并绘制时域谱和频域谱
-z=ddemod(y,Fc,Fd,Fs,'fsk',2);
+z=ddemod(y,Fc,Fd,Fs,'fsk',4);
 FFT4=abs(fft(z,64));
 figure(4)
 subplot(211);
@@ -68,7 +68,7 @@ subplot(212)
 plot(fftshift(YNT1));
 title('SNR为6的高斯白噪声调制信号频域谱');
 
-z1=ddemod(Ynt1,Fc,Fd,Fs,'ask',2);
+z1=ddemod(Ynt1,Fc,Fd,Fs,'fsk',4);
 Z1=abs(fft(z1,256));
 figure(6)
 subplot(211)
@@ -90,7 +90,7 @@ subplot(212)
 plot(fftshift(YNT2));
 title('SNR为-2的高斯白噪声调制信号频域谱');
 
-z2=ddemod(Ynt2,Fc,Fd,Fs,'ask',2);
+z2=ddemod(Ynt2,Fc,Fd,Fs,'fsk',2);
 Z2=abs(fft(z2,256));
 figure(8)
 subplot(211)
@@ -104,7 +104,7 @@ title('加入SNR为-2的高斯白噪声解调信号频域谱');
 SNR=-10:2;
 for i=1:length(SNR) 
     Ynt3=awgn(y,SNR(i));	%加入高斯小噪声，信噪比从-10dB到10dB
-Z=ddemod(Ynt3,Fc,Fd,Fs,'fsk',2); %调用数字带通解调函数ddemod对加噪声信号进行解调
+Z=ddemod(Ynt3,Fc,Fd,Fs,'fsk',4); %调用数字带通解调函数ddemod对加噪声信号进行解调
 [br, Pe(i)]=symerr(x,Z);%对解调后加大噪声信号误码分析，br为符号误差数，Pe(i)为符号误差率
 end
 figure(9)
@@ -112,5 +112,5 @@ semilogy(SNR,Pe);			% 调用semilogy函数绘制信噪比与误码率的关系�
 xlabel('信噪比 SNR(r/dB)');
 ylabel('误码率 Pe');
 title('信噪比与误码率的关系');
-%axis([-10 10 0 1])
+axis([-10 2 0 1])
 grid on
